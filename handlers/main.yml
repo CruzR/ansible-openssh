@@ -1,0 +1,7 @@
+---
+- name: restart sshd
+  systemd:
+    name: sshd
+    state: restarted
+
+# vim: ts=2 sw=2 et

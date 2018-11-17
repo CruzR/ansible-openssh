@@ -1,0 +1,19 @@
+---
+- name: ensure openssh-server is installed and up-to-date
+  apt:
+    name: openssh-server
+    state: latest
+- name: upload our sshd_config
+  copy:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: restart sshd
+- name: enable sshd
+  systemd:
+    name: sshd
+    enabled: yes
+
+# vim: ts=2 sw=2 et
